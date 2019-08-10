@@ -6,6 +6,9 @@ import './App.css';
 import Navigation from './components/Navigation';
 import Home from './components/Home';
 import CreateUser from './components/CreateUser';
+import Login from './components/Login';
+import Contacts from './components/Contacts';
+import CreateContact from './components/CreateContact';
 
 function App(){
   return(
@@ -13,7 +16,10 @@ function App(){
       <Navigation/>
         <div className="container p-4">
           <Route path="/" exact component={Home} />
+          <Route path="/signin" component={Login} />
           <Route path="/signup" component={CreateUser} />
+          <Route path="/contacts" component={Contacts} />
+          <Route path="/newcontact" component={CreateContact} />
         </div>
     </Router>
   );

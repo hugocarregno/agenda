@@ -6,13 +6,15 @@ require('dotenv').config();
 const app = express();
 
 //settings
-app.set('port', process.env.PORT || 4000);
+app.set('port', process.env.PORT || 5000);
 
 //middlewares
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/logins', require('./routes/logins'));
+app.use('/api/signin', require('./routes/signin'));
+app.use('/api/signup', require('./routes/signup'));
+
 app.get('*', (req, res) => {
   res.send("Url no válida");
 });

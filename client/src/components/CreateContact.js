@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-export default class CreateUser extends Component {
+export default class CreateContact extends Component {
   state = {
-    username: '',
-    password: '',
-    password2: '',
     name: '',
     lastname: '',
-    email: ''
+    email: '',
+    phone: ''
   }
   onChange = e => {
     this.setState({
@@ -17,16 +15,13 @@ export default class CreateUser extends Component {
   }
   onSubmit = async e => {
     e.preventDefault();
-    const newUser = {
-        username: this.state.username,
-        password: this.state.password,
-        password2: this.state.password2,
+    const newContact = {
         name: this.state.name,
         lastname: this.state.lastname,
-        email: this.state.email
+        email: this.state.email,
+        phone: this.state.phone
     };
-    await axios.post('http://localhost:4000/api/logins', newUser);
-    window.location.href='/';
+    await axios.post('/api/contact', newContact)
   }
 
   render() {
@@ -35,18 +30,9 @@ export default class CreateUser extends Component {
         <div className="col-md-4 mx-auto">
           <div className="card mt-4 text-center">
             <div className="card-header">
-              <h4>Sign up</h4>
+              <h4>New Contact</h4>
               <div className="card-body">
                 <form onSubmit={this.onSubmit}>
-                  <div className="form-group">
-                    <input className="form-control" type="text" name="username" placeholder="Username" onChange={this.onChange} value={this.state.username} required/>
-                  </div>
-                  <div className="form-group">
-                    <input className="form-control" type="password" name="password" placeholder="Password" onChange={this.onChange} value={this.state.password} required />
-                  </div>
-                  <div className="form-group">
-                    <input className="form-control" type="password" name="password2" placeholder="Confirm password" onChange={this.onChange} value={this.state.password2} required />
-                  </div>
                   <div className="form-group">
                     <input className="form-control" type="text" name="name" placeholder="Name" onChange={this.onChange} value={this.state.name} required />
                   </div>
@@ -55,6 +41,9 @@ export default class CreateUser extends Component {
                   </div>
                   <div className="form-group">
                     <input className="form-control" type="mail" name="email" placeholder="E-mail" onChange={this.onChange} value={this.state.email} required />
+                  </div>
+                  <div className="form-group">
+                    <input className="form-control" type="tel" name="phone" placeholder="Phone" onChange={this.onChange} value={this.state.email} required />
                   </div>
                   <button type="submit" className="btn btn-primary container-fluid">
                     Save
